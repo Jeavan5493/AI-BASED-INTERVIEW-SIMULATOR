@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>InterVAI</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Profile</a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <div class="navbar">
+      <h1>Dashboard</h1>
+      <button onclick="toggleTheme()" class="theme-btn">🌙</button>
+    </div>
+
+    <!-- SINGLE BIG CARD -->
+    <div class="card large">
+
+      <h2>Start Interview</h2>
+
+      <div class="form-row">
+        <select id="level">
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Experienced</option>
+        </select>
+
+        <select id="language">
+          <option>JavaScript</option>
+          <option>Python</option>
+          <option>Java</option>
+          <option>C++</option>
+        </select>
+      </div>
+
+      <button onclick="startInterview()" class="start-btn">
+        🚀 Start Interview
+      </button>
+
+    </div>
+
+    <!-- HISTORY -->
+    <div class="card large">
+      <h2>History</h2>
+      <div id="history"></div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+
+
+
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+<script src="js/script.js"></script>
+<script>
+function startInterview() {
+  window.location.href = "interview.html";
+}
+</script>
+</body>
+</html>

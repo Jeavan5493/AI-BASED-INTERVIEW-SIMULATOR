@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="interview-container">
+
+  <!-- Top Bar -->
+  <div class="interview-header">
+    <h2 id="question">Loading...</h2>
+    <button class="exit-btn" onclick="exitInterview()">Exit</button>
+  </div>
+
+  <!-- Answer Box -->
+  <div class="answer-box">
+    <textarea id="answer" placeholder="Speak or type your answer..."></textarea>
+
+    <div class="controls">
+      <button onclick="startVoice()">🎤 Speak</button>
+      <button onclick="next()">Next →</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/script.js"></script>
+<script>
+let questions = [
+  "Explain stack vs queue",
+  "What is an API?",
+  "Explain asynchronous programming",
+  "What is OOP?",
+  "Difference between array and linked list"
+];
+
+let i = 0;
+let totalScore = 0;
+
+function showQ() {
+  document.getElementById("question").innerText = questions[i];
+}
+showQ();
+
+function next() {
+  let ans = document.getElementById("answer").value;
+
+  totalScore += evaluateAnswer(ans);
+
+  i++;
+
+  if (i < questions.length) {
+    document.getElementById("answer").value = "";
+    showQ();
+  } else {
+    Storage.saveHistory({ score: totalScore, date: new Date() });
+    alert("Final Score: " + totalScore);
+    location.href = "dashboard.html";
+  }
+}
+
+function exitInterview() {
+  if (confirm("Exit interview?")) {
+    location.href = "dashboard.html";
+  }
+}
+</script>
+
+</body>
+</html>

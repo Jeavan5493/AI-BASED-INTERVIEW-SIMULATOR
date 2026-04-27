@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="center-page">
+
+  <div class="auth-box">
+    <h2>Login</h2>
+
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+
+   <button onclick="login()">Login</button>
+<button onclick="signup()">Signup</button>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+  </div>
+  <script>
+function signup() {
+  const email = document.querySelector('input[type="email"]').value;
+  const password = document.querySelector('input[type="password"]').value;
+
+  if (!email || !password) {
+    alert("Enter email & password");
+    return;
+  }
+
+  const user = { email, password };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("Signup successful!");
+}
+
+function login() {
+  const email = document.querySelector('input[type="email"]').value;
+  const password = document.querySelector('input[type="password"]').value;
+
+  const savedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (!savedUser) {
+    alert("No user found. Please signup first.");
+    return;
+  }
+
+  if (email === savedUser.email && password === savedUser.password) {
+    alert("Login successful!");
+    window.location.href = "dashboard.html"; // 🔥 IMPORTANT
+  } else {
+    alert("Invalid credentials");
+  }
+}
+</script>
+</body>
+</html>
